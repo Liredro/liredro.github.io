@@ -1,0 +1,20 @@
+.bb-toggle{position:fixed;right:20px;bottom:18px;z-index:10002;padding:12px 16px;background:#0b1b11;color:#a3ffc0;border:1px solid #53785e;font:11px "Space Mono",monospace;cursor:pointer}
+.bb-toggle:focus-visible,.bb-over button:focus-visible{outline:2px solid #a3ffc0;outline-offset:4px}
+.bb-overlay{position:fixed;inset:0;width:100%;height:100%;z-index:9998;pointer-events:none}
+.bb-hud{position:fixed;top:12px;left:50%;transform:translateX(-50%);z-index:9999;pointer-events:none;background:rgba(5,12,8,.92);color:#a3ffc0;padding:10px 16px;font:12px "Space Mono",monospace;text-align:center;max-width:90vw}
+.bb-hud span{display:block;font-size:10px;color:#b5c7ba;margin-top:5px}
+.bb-over{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:10001;background:#09160e;border:1px solid #6f987a;padding:28px;text-align:center;color:#daffe3;width:min(340px,85vw);font-family:"Space Mono",monospace}
+.bb-over[hidden]{display:none}.bb-over h2{font-size:22px}.bb-over button{background:#a3ffc0;color:#07150b;border:0;padding:12px 18px;font:12px "Space Mono",monospace;cursor:pointer}
+@media(max-width:600px){.bb-toggle{right:10px;bottom:8px}.bb-hud{width:90vw}.bb-hud span{font-size:9px}}
+
+.game-mode-bar{position:sticky;top:0;z-index:10002;height:0;overflow:visible}
+.game-mode-bar .bb-toggle{position:relative;top:16px;left:clamp(22px,3vw,48px);right:auto;bottom:auto;border-radius:24px;background:rgba(6,18,11,.94);padding:10px 16px}
+.bb-hud{top:64px}
+
+.bb-prize{display:block;width:100%;max-height:240px;object-fit:contain;margin:18px auto;border-radius:6px}.bb-prize[hidden]{display:none}.bb-over{max-height:90dvh;overflow-y:auto}
+
+.bb-hud output{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.bb-hud .bb-hearts{display:inline-flex;align-items:center;gap:8px;color:#bd263f;line-height:1;margin:0}
+.bb-hud .bb-heart{display:block;flex:none;width:36px;height:32px;image-rendering:pixelated}
+.bb-hud .bb-heart--empty{color:#66303d}
+.bb-hud .bb-score{display:inline-block;color:#a3ffc0;font-size:12px;margin:0}
