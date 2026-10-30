@@ -1,4 +1,4 @@
-# 💚 Liana — Finance × Technology
+# 🔥 Personal Website
 
 A component-based React portfolio featuring interactive finance projects and an original **Bull vs Bear** browser game. Migrated from a hand-written HTML/CSS/JavaScript site without redesigning the original interface.
 
