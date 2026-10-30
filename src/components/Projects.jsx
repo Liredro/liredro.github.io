@@ -18,7 +18,7 @@ function ProjectCard({ project, index, onPlay }) {
       <div className="project-card__links">
         {project.github && <ProjectLink href={project.github} label={`View ${project.title} on GitHub`}><GitHubIcon/></ProjectLink>}
         {project.live && <ProjectLink href={project.live} label={`Open ${project.title} live demo`}><OpenIcon/></ProjectLink>}
-        {project.play && <button type="button" onClick={onPlay} aria-label="Play Bull vs Bear game" title="Play Bull vs Bear"><OpenIcon/></button>}
+        {project.play && onPlay && <button type="button" onClick={onPlay} aria-label="Play Bull vs Bear game" title="Play Bull vs Bear"><OpenIcon/></button>}
       </div>
     </div>
   </article>;
