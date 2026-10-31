@@ -60,6 +60,16 @@ test('Umami is installed and key project actions are tracked', () => {
   assert.match(project, /project-github-/);
   assert.match(project, /game-launch/);
 });
+test('portrait slider tracks one completed interaction with direction data', () => {
+  const about = file('src/components/About.jsx');
+  assert.match(about, /portrait-slider-used/);
+  assert.match(about, /direction: end > start \? 'sharp' : 'pixelated'/);
+  assert.match(about, /onPointerDown=/);
+  assert.match(about, /onPointerUp=\{finishPointer\}/);
+  assert.match(about, /onKeyUp=/);
+  assert.match(about, /start === null \|\| start === end/);
+});
+
 test('game module exports its mount API and has a base-safe prize URL', () => {
   const source = file('src/game/bullBearEngine.js');
   assert.match(source, /export function createBullBearGame/);
