@@ -1,3 +1,4 @@
+
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -6,6 +7,7 @@ const projectBase = repository.toLowerCase().endsWith('.github.io') ? '/' : `/${
 
 // GitHub Pages serves project repositories under /<repository>/.
 // Keeping Vite's base correct ensures CSS, JS, and images resolve on Pages.
+
 export default defineConfig({
   plugins: [
     react(),
@@ -13,20 +15,25 @@ export default defineConfig({
       name: 'production-csp',
       enforce: 'post',
       transformIndexHtml(html, context) {
-        if (context.server) return html; // Do not block Vite's local hot reload WebSocket.
+        if (context.server) return html;
+
         const policy = [
           "default-src 'self'",
-          "script-src 'self'",
+          "script-src 'self' https://static.cloudflareinsights.com",
           "style-src 'self' https://fonts.googleapis.com",
           "font-src 'self' https://fonts.gstatic.com",
           "img-src 'self' data:",
-          "connect-src 'none'",
+          "connect-src 'self' https://cloudflareinsights.com",
           "object-src 'none'",
           "base-uri 'self'",
           "form-action 'none'",
           "frame-src 'none'"
         ].join('; ');
-        return html.replace('<head>', `<head>\n  <meta http-equiv="Content-Security-Policy" content="${policy}">`);
+
+        return html.replace(
+          '<head>',
+          `<head>\n  <meta http-equiv="Content-Security-Policy" content="${policy}">`
+        );
       }
     }
   ],
