@@ -53,10 +53,11 @@ test('no inline JavaScript event handlers or dangerous HTML sinks in React UI', 
 
 test('production build injects a restrictive content security policy', () => {
   const config = file('vite.config.js');
+
   assert.match(config, /production-csp/);
-  assert.match(config, /script-src 'self'/);
+  assert.match(config, /script-src 'self' https:\/\/static\.cloudflareinsights\.com/);
+  assert.match(config, /connect-src 'self' https:\/\/cloudflareinsights\.com/);
   assert.match(config, /object-src 'none'/);
-  assert.match(config, /connect-src 'none'/);
 });
 
 test('game module exports its mount API and has a base-safe prize URL', () => {
