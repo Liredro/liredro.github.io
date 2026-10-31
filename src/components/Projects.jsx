@@ -58,8 +58,8 @@ export default function Projects({ onPlay }) {
     <div className="section-heading"><p className="section-heading__eyebrow"><span className="section-number">02 /</span> THINGS I&apos;M EXPLORING</p><h2 id="projects-title">Projects<span className="heading-full-stop">.</span></h2><p>Research, code and experiments.</p></div>
     <div className="project-controls"><span className="project-controls__hint">EXPLORE THE PROJECTS <span aria-hidden="true">→</span></span><div className="project-controls__buttons">
       <span id="project-position" aria-live="polite" aria-atomic="true">{String(current).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}</span>
-      <button type="button" id="project-prev" aria-label="Previous project" aria-controls="project-track" disabled={atStart} onClick={() => move(-1)}>←</button>
-      <button type="button" id="project-next" aria-label="Next project" aria-controls="project-track" disabled={atEnd} onClick={() => move(1)}>→</button>
+      <button type="button" id="project-prev" aria-label="Previous project" aria-controls="project-track" disabled={atStart} data-umami-event="projects-carousel-previous" onClick={() => move(-1)}>←</button>
+      <button type="button" id="project-next" aria-label="Next project" aria-controls="project-track" disabled={atEnd} data-umami-event="projects-carousel-next" onClick={() => move(1)}>→</button>
     </div></div>
     <div className="projects-grid" id="project-track" tabIndex="0" role="region" aria-label="Projects. Use left and right arrow keys or swipe to browse." ref={trackRef} onScroll={update} onKeyDown={event => {
       if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') { event.preventDefault(); move(event.key === 'ArrowRight' ? 1 : -1); }

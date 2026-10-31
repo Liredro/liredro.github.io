@@ -70,6 +70,24 @@ test('portrait slider tracks one completed interaction with direction data', () 
   assert.match(about, /start === null \|\| start === end/);
 });
 
+test('header navigation and contact controls are tracked', () => {
+  const navbar = file('src/components/Navbar.jsx');
+  for (const name of ['nav-bio', 'nav-projects', 'contact-github', 'contact-linkedin', 'contact-email']) {
+    assert.ok(navbar.includes(`data-umami-event="${name}"`), `Missing Umami tracking for ${name}`);
+  }
+});
+test('Game Mode toggle tracks activation and deactivation once per click', () => {
+  const app = file('src/App.jsx');
+  assert.match(app, /window\.umami\?\.track\?\.\('game-mode-toggle', \{ action \}\)/);
+  assert.match(app, /gameActive \? 'off' : 'on'/);
+  assert.match(app, /onClick=\{toggle\}/);
+});
+test('project carousel arrow clicks are tracked', () => {
+  const projects = file('src/components/Projects.jsx');
+  assert.match(projects, /data-umami-event="projects-carousel-previous"/);
+  assert.match(projects, /data-umami-event="projects-carousel-next"/);
+});
+
 test('game module exports its mount API and has a base-safe prize URL', () => {
   const source = file('src/game/bullBearEngine.js');
   assert.match(source, /export function createBullBearGame/);

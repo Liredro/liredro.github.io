@@ -25,7 +25,6 @@ export default function App() {
 
   useEffect(() => {
     if (hideGame) return;
-
     let cancelled = false;
     // Don't even download the game engine on mobile.
     import('./game/bullBearEngine.js').then(({ createBullBearGame }) => {
@@ -48,9 +47,13 @@ export default function App() {
   }, []);
 
   const toggle = useCallback(() => {
-    if (window.matchMedia(NO_GAME_QUERY).matches) return;
-    engineRef.current?.toggle();
-  }, []);
+    if (window.matchMedia(NO_GAME_QUERY).matches || !engineRef.current) return;
+    // One event per click, identifying the intended new game state.
+    // Do not send analytics for a toggle if the game engine is unavailable.
+    const action = gameActive ? 'off' : 'on';
+    engineRef.current.toggle();
+    window.umami?.track?.('game-mode-toggle', { action });
+  }, [gameActive]);
 
   return <>
     <Ticker/>
