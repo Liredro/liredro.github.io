@@ -6,6 +6,8 @@
 
 A personal portfolio at the intersection of finance and technology, featuring interactive projects and an original browser game.
 
+🌐 Live website: liredro.github.io
+
 ## 🎨 Colour palette
 
 | Use | Hex |
